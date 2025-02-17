@@ -1,4 +1,4 @@
-const ApplicationLogo = (props) => (
+const ApplicationLogo = props => (
     <svg
         {...props}
         width="115" height="31" viewBox="0 0 115 31" fill="none"
