@@ -39,43 +39,49 @@ const OtpVerification = () => {
           </p>
         </div>
       </div>
-
-      <div>
-        <h3>Verify</h3>
-        <p>Please verify the code sent to </p>
-      </div>
-      <form onSubmit={handleOtpVerification} onClick={() => setOtpError(false)}>
-        <OTPInput
-          value={otp}
-          onChange={setOtp}
-          shouldAutoFocus
-          numInputs={4}
-          containerStyle={containerStyling}
-          inputStyle={inputStyling}
-          renderInput={(props) => (
-            <input
-              {...props}
-              inputMode="numeric"
-              pattern="[0-9]*"
-              onKeyDown={(e) => {
-                if (!/^\d$/.test(e.key) && e.key !== 'Backspace') {
-                  e.preventDefault()
-                }
-              }}
+      <article className="w-full max-w-[350px] mx-auto">
+        <div className="my-4">
+          <h3>Verify</h3>
+          <p>Please verify the code sent to </p>
+        </div>
+        <form
+          onSubmit={handleOtpVerification}
+          onClick={() => setOtpError(false)}
+        >
+          <OTPInput
+            value={otp}
+            onChange={setOtp}
+            shouldAutoFocus
+            numInputs={4}
+            containerStyle={containerStyling}
+            inputStyle={inputStyling}
+            renderInput={(props) => (
+              <input
+                {...props}
+                inputMode="numeric"
+                pattern="[0-9]*"
+                onKeyDown={(e) => {
+                  if (!/^\d$/.test(e.key) && e.key !== 'Backspace') {
+                    e.preventDefault()
+                  }
+                }}
+              />
+            )}
+          />
+          {otpError && <p>Please enter a valid OTP</p>}
+          <p className="text-center">00:30</p>
+          <div className="mt-6 flex justify-center">
+            <Button
+              className="  bg-blue-500 cursor-pointer"
+              type="submit"
+              title="Verify OTP"
             />
-          )}
-        />
-        {otpError && <p>Please enter a valid OTP</p>}
-        <Button
-          className=" text-blue-500 cursor-pointer"
-          type="submit"
-          title="Verify OTP"
-        />
-      </form>
-      <div>
-        <p>00:30</p>
-      </div>
-      <Button className="underline text-blue-500" title="Resend code" />
+          </div>
+        </form>
+        <div className="text-center">
+          <Button className="underline text-blue-500" title="Resend code" />
+        </div>
+      </article>
     </section>
   )
 }
