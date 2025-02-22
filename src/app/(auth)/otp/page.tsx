@@ -1,12 +1,15 @@
 'use client'
 import { Button } from '@/components/basics'
 import { LogoIcon } from '@/components/icons'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import OTPInput from 'react-otp-input'
 
 const OtpVerification = () => {
   const [otp, setOtp] = useState<string>('')
+  const [time, setTime] = useState(30)
   const [otpError, setOtpError] = useState<boolean>(false)
+  const router = useRouter()
   const containerStyling = {
     display: 'flex',
     gap: '20px',
@@ -25,9 +28,19 @@ const OtpVerification = () => {
       return
     }
     console.log(otp)
+    router.push('/user')
   }
+  useEffect(() => {
+    if (time <= 0) return // Stop when time reaches zero
+
+    const interval = setInterval(() => {
+      setTime((prev) => prev - 1)
+    }, 1000) // Update every second
+
+    return () => clearInterval(interval) // Cleanup interval on unmount
+  }, [time])
   return (
-    <section>
+    <section className="pt-10">
       <div className="flex justify-center flex-col items-center gap-y-5">
         <LogoIcon className="fill-akauntme size-10" type="alone" />
         <div className="text-center">
@@ -41,7 +54,6 @@ const OtpVerification = () => {
       </div>
       <article className="w-full max-w-[350px] mx-auto">
         <div className="my-4">
-          <h3>Verify</h3>
           <p>Please verify the code sent to </p>
         </div>
         <form
@@ -68,18 +80,21 @@ const OtpVerification = () => {
               />
             )}
           />
-          {otpError && <p>Please enter a valid OTP</p>}
-          <p className="text-center">00:30</p>
+          {otpError && <p className="err mt-4">Please enter a valid OTP</p>}
+          <p className={time < 1 ? 'hidden' : 'block text-center mt-4'}>
+            00:{time}
+          </p>
           <div className="mt-6 flex justify-center">
             <Button
-              className="  bg-blue-500 cursor-pointer"
+              className="  bg-blue-500 cursor-pointer w-full max-w-[400px] flex justify-center text-white"
               type="submit"
               title="Verify OTP"
             />
           </div>
         </form>
-        <div className="text-center">
-          <Button className="underline text-blue-500" title="Resend code" />
+        <div className="flex justify-center gap-1 mt-10 items-center">
+          <p>Didn't receive code?</p>
+          <Button className="underline text-blue-500" title="Resend OTP" />
         </div>
       </article>
     </section>

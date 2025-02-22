@@ -2,113 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* styles/globals.css */
 
-.bg-large-logo{
-position: relative;
-z-index: 2;
+.bg-large-logo {
+  position: relative;
+  z-index: 2;
 }
 
 .bg-large-logo::after {
-position: absolute;
-bottom: -100px;
-content: '';
-width: 100%;
-opacity: 0.2;
-/* width: 400px; */
-height: 400px;
-background-image: url('/large-logo.svg');
-background-size: contain;
-z-index: -1;
-background-repeat: no-repeat;
+  position: absolute;
+  bottom: -100px;
+  content: '';
+  width: 100%;
+  opacity: 0.2;
+  /* width: 400px; */
+  height: 400px;
+  background-image: url('/large-logo.svg');
+  background-size: contain;
+  z-index: -1;
+  background-repeat: no-repeat;
 }
 
-@media screen and (min-width:700px) {
-.bg-large-logo::after {
-bottom: 10px;
+@media screen and (min-width: 700px) {
+  .bg-large-logo::after {
+    bottom: 10px;
+  }
 }
-}
-
 
 .mySwiper {
-/* width: 100%; */
-/* height: 100%; */
+  /* width: 100%; */
+  /* height: 100%; */
 }
 
-
 span.swiper-pagination-bullet {
-
-width: 5px;
-height: 5px;
-border-radius: 9999px;
-opacity: 1;
-border: 2px solid transparent;
-background-color: rgba(255,255,255,0.7);
-transition: background 0.3s, transform 0.3s;
-will-change: width;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  opacity: 1;
+  border: 2px solid transparent;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: background 0.3s, transform 0.3s;
+  will-change: width;
 }
 
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
-width: 15px;
-height: 5px;
-border-radius: 100px;
-background: #fff;
-border-color: #fff;
+  width: 15px;
+  height: 5px;
+  border-radius: 100px;
+  background: #fff;
+  border-color: #fff;
 }
 
 .swiper-pagination-bullet:hover,
 .swiper-pagination-bullet-active {
-background: #fff;
-border-color: #fff;
-transform: scale(1.2);
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.2);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-width: 8px;
+  width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-background: #f1f1f1;
+  background: #f1f1f1;
 }
 
-
-
 .custom-scrollbar::-webkit-scrollbar-thumb {
-background-color: #888;
-border-radius: 10px;
-border: 2px solid #f1f1f1;
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-background: #555;
+  background: #555;
 }
 
-
 .mobile-custom-scrollbar::-webkit-scrollbar {
-width: 5px;
-height: 5px;
+  width: 5px;
+  height: 5px;
 }
 
 .mobile-custom-scrollbar::-webkit-scrollbar-track {
-background: #f1f1f1;
+  background: #f1f1f1;
 }
 
-
-
 .mobile-custom-scrollbar::-webkit-scrollbar-thumb {
-background-color: #888;
-border-radius: 10px;
-border: 2px solid #f1f1f1;
-visibility: hidden;
-
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+  visibility: hidden;
 }
 
 .mobile-custom-scrollbar::-webkit-scrollbar-thumb:hover {
-background: #555;
-visibility: visible;
+  background: #555;
+  visibility: visible;
 }
-
 
 /* :root {
 --foreground-rgb: 0, 0, 0;
@@ -141,121 +130,112 @@ text-wrap: balance;
 } */
 
 @layer utilities {
+  .border-b-none {
+    border-bottom: none;
+  }
+  .err {
+    @apply text-center text-red-400;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply dark:bg-akauntme-dark;
+  }
 
-    .border-b-none {
-        border-bottom: none;
-    }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply dark:bg-akauntme-dark-2 dark:border-akauntme-dark;
+  }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-@apply dark:bg-akauntme-dark
-}
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply dark:bg-akauntme-dark-2;
+  }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-@apply dark:bg-akauntme-dark-2 dark:border-akauntme-dark
-}
+  .mobile-custom-scrollbar::-webkit-scrollbar-track {
+    @apply dark:bg-akauntme-dark;
+  }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-@apply dark:bg-akauntme-dark-2
-}
+  .mobile-custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply dark:bg-akauntme-dark-2 dark:border-akauntme-dark;
+  }
 
+  .mobile-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply dark:bg-akauntme-dark-2;
+  }
 
-.mobile-custom-scrollbar::-webkit-scrollbar-track {
-@apply dark:bg-akauntme-dark
-}
-
-.mobile-custom-scrollbar::-webkit-scrollbar-thumb {
-@apply dark:bg-akauntme-dark-2 dark:border-akauntme-dark
-}
-
-.mobile-custom-scrollbar::-webkit-scrollbar-thumb:hover {
-@apply dark:bg-akauntme-dark-2
-}
-
-    
-.glassmorphism {
+  .glassmorphism {
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+  .account_type_next_btn {
+    @apply py-2 px-3 flex items-center justify-center bg-akauntme transition-all shadow-md shadow-akauntme/20  w-full lg:w-4/12 text-white rounded-lg mt-4  border-none outline-none focus:outline-none focus:border-none focus:ring-0 font-semibold;
+  }
 
+  .account_type_next_btn svg {
+    @apply size-4 fill-white translate-x-0 opacity-0 transition-transform;
+  }
 
-.account_type_next_btn {
-@apply py-2 px-3 flex items-center justify-center bg-akauntme transition-all shadow-md shadow-akauntme/20  w-full lg:w-4/12 text-white rounded-lg mt-4  border-none outline-none focus:outline-none focus:border-none focus:ring-0 font-semibold 
-}
+  .account_type_next_btn:hover svg {
+    @apply translate-x-2 opacity-100 transition-transform;
+  }
 
+  .account_type_option {
+    @apply flex border-2 cursor-pointer *:hover:text-akauntme *:text-gray-700  border-transparent transition-all hover:bg-blue-200/20 hover:border-akauntme items-center lg:justify-start gap-x-4 lg:gap-x-10  max-w-sm shadow-md shadow-akauntme/10 p-4 rounded-xl;
+  }
 
+  .account_type_option .account_content {
+    @apply border-2 border-akauntme/50 transition-all;
+  }
+  .account_type_option:hover .account_content {
+    @apply bg-akauntme border-transparent transition-all;
+  }
 
-.account_type_next_btn svg {
-@apply size-4 fill-white translate-x-0 opacity-0 transition-transform 
-}
+  .account_content svg {
+    @apply fill-akauntme;
+  }
+  .account_type_option:hover .account_content svg {
+    @apply fill-white;
+  }
 
-.account_type_next_btn:hover svg {
-@apply translate-x-2 opacity-100 transition-transform 
-}
+  .account_type_option.active {
+    @apply text-akauntme bg-blue-200/20 border-akauntme *:text-akauntme;
+  }
 
-.account_type_option {
-@apply flex border-2 cursor-pointer *:hover:text-akauntme *:text-gray-700  border-transparent transition-all hover:bg-blue-200/20 hover:border-akauntme items-center lg:justify-start gap-x-4 lg:gap-x-10  max-w-sm shadow-md shadow-akauntme/10 p-4 rounded-xl
-}
+  .account_type_option .account_content {
+    @apply border-2 border-akauntme/50 transition-all;
+  }
 
-.account_type_option .account_content {
-@apply border-2 border-akauntme/50 transition-all
-}
-.account_type_option:hover .account_content {
-@apply bg-akauntme border-transparent transition-all
-}
+  .account_type_option.active .account_content,
+  .account_type_option:hover .account_content {
+    @apply bg-akauntme border-transparent transition-all;
+  }
 
-.account_content svg {
-@apply fill-akauntme
-}
-.account_type_option:hover .account_content svg {
-@apply fill-white
+  .account_content svg {
+    @apply fill-akauntme;
+  }
+  .account_type_option.active .account_content svg,
+  .account_type_option:hover .account_content svg {
+    @apply fill-white;
+  }
 
-}
+  .desktop-link {
+    @apply flex gap-x-4 mx-3 px-6 items-center text-white dark:text-gray-300 hover:bg-white hover:dark:bg-akauntme-dark-2  hover:text-akauntme hover:dark:text-gray-300 py-1.5 cursor-pointer rounded-md text-base font-medium;
+  }
+  .desktop-link svg {
+    @apply fill-white dark:fill-gray-300;
+  }
 
-.account_type_option.active {
-    @apply text-akauntme bg-blue-200/20 border-akauntme *:text-akauntme
-}
+  .desktop-link:hover svg,
+  .desktop-link.active svg {
+    @apply fill-akauntme dark:fill-gray-300;
+  }
 
-.account_type_option .account_content {
-@apply border-2 border-akauntme/50 transition-all
-}
+  .desktop-link.active .link-svg-container,
+  .desktop-link:hover .link-svg-container {
+    @apply rotate-[20deg] transition-transform;
+  }
 
-.account_type_option.active .account_content,
-.account_type_option:hover .account_content {
-@apply bg-akauntme border-transparent transition-all
-}
-
-.account_content svg {
-@apply fill-akauntme
-}
-.account_type_option.active .account_content svg,
-.account_type_option:hover .account_content svg {
-@apply fill-white
-
-}
-
-
-.desktop-link {
-@apply flex gap-x-4 mx-3 px-6 items-center text-white dark:text-gray-300 hover:bg-white hover:dark:bg-akauntme-dark-2  hover:text-akauntme hover:dark:text-gray-300 py-1.5 cursor-pointer rounded-md text-base font-medium
-}
-.desktop-link svg{
-@apply fill-white dark:fill-gray-300
-}
-
-
-.desktop-link:hover svg,
-.desktop-link.active svg{
-@apply fill-akauntme dark:fill-gray-300
-}
-
-.desktop-link.active .link-svg-container,
-.desktop-link:hover .link-svg-container{
-@apply rotate-[20deg] transition-transform
-} 
-
-.desktop-link.active {
-@apply bg-white text-akauntme dark:bg-akauntme-dark-2  dark:text-gray-300
-}
+  .desktop-link.active {
+    @apply bg-white text-akauntme dark:bg-akauntme-dark-2  dark:text-gray-300;
+  }
 }

@@ -1,13 +1,46 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { Input, InputError, Checkbox } from '@/components/basics'
 import { LogoIcon } from '@/components/icons'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import * as yup from 'yup'
+import { useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-const Login = ({}) => {
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup
+    .string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
+})
+const Login = () => {
+  const router = useRouter()
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [error, setError] = useState<string>('')
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  })
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      await schema.validate(loginData, { abortEarly: false })
+      setErrors({})
+      console.log('Login Data:', loginData)
+      router.push('/')
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
+        const newErrors: { [key: string]: string } = {}
+        err.inner.forEach((error) => {
+          if (error.path) newErrors[error.path] = error.message
+        })
+        setErrors(newErrors)
+      }
+    }
+  }
   return (
     <div className="flex justify-center flex-col items-center gap-y-10">
       <div className="flex justify-center flex-col items-center gap-y-5">
@@ -74,25 +107,43 @@ const Login = ({}) => {
 
       {/* onSubmit={submit} */}
 
-      <form className="w-full justify-center flex flex-col items-center gap-y-5">
-        <div className="w-full flex justify-center">
+      <form
+        className="w-full justify-center flex flex-col items-center gap-y-5"
+        onSubmit={handleLogin}
+        onClick={() => setErrors({})}
+      >
+        <div className="w-9/12 md:w-8/12 flex flex-col gap-1 justify-center">
           <Input
             id="email"
             type="email"
-            className="py-3 rounded-lg w-9/12 md:w-6/12"
+            className="py-3 rounded-lg w-full"
             placeholder="Enter your email address"
+            value={loginData.email}
+            onChange={(e: any) =>
+              setLoginData((prev) => ({
+                ...prev,
+                email: e.target.value,
+              }))
+            }
           />
-          <InputError className="mt-2" />
+          <p className="text-red-500 text-sm">{errors.email}</p>
         </div>
 
-        <div className="w-full flex justify-center">
+        <div className="w-9/12 md:w-8/12 flex flex-col gap-1 justify-center">
           <Input
             id="password"
             type="password"
-            className="py-3 rounded-lg w-9/12 md:w-6/12"
+            className="py-3 rounded-lg w-full"
             placeholder="Enter your password"
+            value={loginData.password}
+            onChange={(e: any) =>
+              setLoginData((prev) => ({
+                ...prev,
+                password: e.target.value,
+              }))
+            }
           />
-          <InputError className="mt-2" />
+          <p className="text-red-500 text-sm">{errors.password}</p>
         </div>
 
         <div className="flex justify-between w-9/12 md:w-6/12 items-center">
