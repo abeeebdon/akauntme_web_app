@@ -4,14 +4,10 @@ const Header = () => {
   const [inputActive, setInputActive] = useState(false)
   return (
     <header className="h-[10vh] bg-white border-b flex justify-around items-center">
-      <div className="bg-[#75767433] px-4 py-2 rounded-xl">
+      <div className="text-base font-bold bg-[#75767433] px-5 py-2 rounded-xl">
         <button>Ask A.I</button>
       </div>
-      <article
-        className="flex w-full max-w-[500px] bg-[#75767433] items-center gap-3 justify-center rounded-xl"
-        onClick={() => setInputActive(true)}
-        onMouseLeave={() => setInputActive(false)}
-      >
+      <article className="flex w-full max-w-[500px] bg-[#75767433] items-center gap-3 justify-center rounded-xl border-none">
         <FaSearch className={`${inputActive ? 'hidden' : 'block'}`} />
         <input
           type="text"

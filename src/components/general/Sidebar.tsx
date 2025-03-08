@@ -85,9 +85,16 @@ const Sidebar = ({ isExpanded, toggleSidebar }: Props) => {
                     )}
 
                     <div
-                      className={` ${
-                        isExpanded ? 'block' : 'hidden'
-                      } text-sm sm:text-base font-semibold p-1 rounded-md`}
+                      className={`
+                        text-sm sm:text-base font-semibold p-1 rounded-md
+                        ${
+                          isExpanded
+                            ? pathname == e.link
+                              ? 'bg-white text-[#007AFF]'
+                              : 'block'
+                            : 'hidden'
+                        } 
+                        `}
                     >
                       {e.name}
                     </div>

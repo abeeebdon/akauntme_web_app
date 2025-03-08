@@ -98,6 +98,9 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #555;
   visibility: visible;
 }
+input:focus {
+  outline: none;
+}
 
 /* :root {
 --foreground-rgb: 0, 0, 0;
